@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PlantTracker_App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PlantTracker_App"
+    Title="PlantTracker_App">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="Calendar"
+        ContentTemplate="{DataTemplate local:CalendarPage}"
+        Route="CalendarPage"/>
+    <ShellContent
+        Title="Compass"
+        ContentTemplate="{DataTemplate local:CompassPage}"
+        Route="CompassPage"/>
+
+</Shell>

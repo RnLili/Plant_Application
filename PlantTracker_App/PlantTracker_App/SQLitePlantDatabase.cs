@@ -22,7 +22,7 @@ namespace PlantTracker_App
         {
             database = new SQLiteAsyncConnection(databasePath, Flags);
             database.CreateTableAsync<Plant>().Wait();
-            SeedAsync().Wait();
+            SeedAsync();
         }
         private async Task SeedAsync()
         {
@@ -30,13 +30,14 @@ namespace PlantTracker_App
             {
                 var plants = new List<Plant>
                 {
-                    new Plant { Name = "Kaktusz", Description = "Szúr", WaterNeed = WaterType.Low, LightNeed = LightType.High, Fertilzer = FertilzerType.Succulent },
-                    new Plant { Name = "Orchidea", Description = "Párás környezet", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilzer = FertilzerType.Orchid },
-                   // new Plant { Name = "Lila madársóska", Description = "Gumós", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilzer = FertilzerType.Flower },
-                    //new Plant { Name = "Korall Virág", Description = "Alulról öntözés", WaterNeed = WaterType.Medium, LightNeed = LightType.High, Fertilzer = FertilzerType.Succulent },
-                    //new Plant { Name = "Ciklámen", Description = "Drámai, ha nem kap vizet", WaterNeed = WaterType.High, LightNeed = LightType.Medium, Fertilzer = FertilzerType.Flower },
+                    new Plant { Name = "Kaktusz", Description = "Szúr", WaterNeed = WaterType.Low, LightNeed = LightType.High, Fertilizer = FertilizerType.Succulent },
+                    new Plant { Name = "Orchidea", Description = "Párás környezet", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilizer = FertilizerType.Orchid },
+                    new Plant { Name = "Lila madársóska", Description = "Gumós", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilizer = FertilizerType.Flower },
+                    new Plant { Name = "Korall Virág", Description = "Alulról öntözés", WaterNeed = WaterType.Medium, LightNeed = LightType.High, Fertilizer = FertilizerType.Succulent },
+                    new Plant { Name = "Ciklámen", Description = "Drámai, ha nem kap vizet", WaterNeed = WaterType.High, LightNeed = LightType.Medium, Fertilizer = FertilizerType.Flower },
 
                 };
+                
             }
         }
 

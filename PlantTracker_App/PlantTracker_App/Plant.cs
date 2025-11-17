@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace PlantTracker_App
 {
@@ -19,7 +20,7 @@ namespace PlantTracker_App
         Medium,
         High
     }
-    public enum FertilzerType
+    public enum FertilizerType
     {
         Flower,
         Succulent,
@@ -28,6 +29,8 @@ namespace PlantTracker_App
     public partial class Plant : ObservableObject
     {
         [ObservableProperty]
+        [property:PrimaryKey]
+        [property:AutoIncrement]
         int id;
         [ObservableProperty]
         string name;
@@ -38,8 +41,13 @@ namespace PlantTracker_App
         [ObservableProperty]
         LightType lightNeed;
         [ObservableProperty]
-        FertilzerType fertilzer;
+        FertilizerType fertilizer;
         //[ObservableProperty]
         //Image img;
+
+        public Plant GetCopy()
+        {
+            return (Plant)this.MemberwiseClone();
+        }
     }
 }

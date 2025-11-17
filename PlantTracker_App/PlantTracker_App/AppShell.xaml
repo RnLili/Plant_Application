@@ -7,7 +7,7 @@
     Title="PlantTracker_App">
 
     <ShellContent
-        Title="Home"
+        Title="Plants"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent

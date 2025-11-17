@@ -4,34 +4,36 @@
              xmlns:local="clr-namespace:PlantTracker_App"
              x:Class="PlantTracker_App.MainPage"
              Loaded="MainPage_OnLoaded">
-
-    <Grid RowDefinitions="Auto,Auto,Auto">
-        <HorizontalStackLayout>
-            <Button Text="New"/>
-            <Button Text="Edit"/>
-            <Button Text="Details"/>
-            <Button Text="Delete"/>
-        </HorizontalStackLayout>
-        <Border StrokeThickness="5" Stroke="DarkSeaGreen" StrokeShape="RoundRectangle 10" Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Plants}" 
-                        SelectedItem="{Binding SelectedPlant}"
-                        SelectionMode="Single"
-                        BackgroundColor="Lavender">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Plant">
-                        <Border Margin="5" Padding="5"
-            Stroke="DarkOliveGreen"  StrokeThickness="2" StrokeShape="RoundRectangle 10">
-                            <VerticalStackLayout>
-                                <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Name}"/>
-                                <Label FontSize="Small" Text="{Binding WaterNeed}"/>
-                                <Label FontSize="Small" Text="{Binding LightNeed}" />
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Border>
-    </Grid>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto">
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <Button Text="New" Command="{Binding NewPlantCommand}"/>
+                <Button Text="Edit"/>
+                <Button Text="Details" Command="{Binding PlantDetailsCommand}"/>
+                <Button Text="Delete"/>
+            </HorizontalStackLayout>
+            <Border StrokeThickness="5" Stroke="Lavender" StrokeShape="RoundRectangle 10" Grid.Row="1">
+                <CollectionView ItemsSource="{Binding Plants}" 
+                    SelectedItem="{Binding SelectedPlant}"
+                    SelectionMode="Single"
+                    BackgroundColor="SeaGreen">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Plant">
+                            <Border Margin="5" Padding="5"
+        Stroke="Lavender"  StrokeThickness="2" StrokeShape="RoundRectangle 10">
+                                <VerticalStackLayout>
+                                    <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Name}" IsVisible="Visible"/>
+                                    <Label FontSize="Small" Text="{Binding WaterNeed}" IsVisible="True"/>
+                                    <Label FontSize="Small" Text="{Binding LightNeed}" IsVisible="Collapse"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+        </Grid>
+    </ScrollView>
+    
 
 
 </ContentPage>

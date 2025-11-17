@@ -7,10 +7,10 @@
     <ScrollView>
         <Grid RowDefinitions="Auto,Auto">
             <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
-                <Button Text="New" Command="{Binding NewPlantCommand}"/>
-                <Button Text="Edit"/>
-                <Button Text="Details" Command="{Binding PlantDetailsCommand}"/>
-                <Button Text="Delete"/>
+                <Button Text="New" Command="{Binding NewPlantCommand}" BackgroundColor="DarkOliveGreen"/>
+                <Button Text="Edit" BackgroundColor="DarkOliveGreen"/>
+                <Button Text="Details" Command="{Binding PlantDetailsCommand}" BackgroundColor="DarkOliveGreen"/>
+                <Button Text="Delete" Command="{Binding DeletePlantCommand}" BackgroundColor="DarkOliveGreen"/>
             </HorizontalStackLayout>
             <Border StrokeThickness="5" Stroke="Lavender" StrokeShape="RoundRectangle 10" Grid.Row="1">
                 <CollectionView ItemsSource="{Binding Plants}" 

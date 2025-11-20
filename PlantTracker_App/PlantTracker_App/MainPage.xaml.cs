@@ -19,5 +19,7 @@ namespace PlantTracker_App
         {
             await viewModel.InitAsync();
         }
+
+        
     }
 }

@@ -2,11 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlantTracker_App.EditPlantPage"
-             Title="EditPlantPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Edit Plant Page">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <Label Text="Name"/>
+        <Entry Text="{Binding Draft.Name}"/>
+        <Label Text="Water Need"/>        
+        <Picker Title="Watering Frequency" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                              Path=BindingContext.WaterNeeds}" SelectedItem="{Binding Draft.WaterNeed}"/>
+        <Label Text="Sunlight"/>
+        <Picker Title="Sunlight Time" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                      Path=BindingContext.LightNeeds}" SelectedItem="{Binding Draft.LightNeed}"/>
+        
+        <Label Text="Fertilizer"/>
+        <Picker Title="Fertilizer type" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+              Path=BindingContext.Fertilizer}" SelectedItem="{Binding Draft.Fertilizer}"/>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Button Text="Save" Command="{Binding SavePlantCommand}"/>
+            <Button Text="Cancel" Command="{Binding CancelEditCommand}"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -5,7 +5,6 @@
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("plantdetails", typeof(PlantDetailsPage));
             Routing.RegisterRoute("editplant", typeof(EditPlantPage));
         }
     }

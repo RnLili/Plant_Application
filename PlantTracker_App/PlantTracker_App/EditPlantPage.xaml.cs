@@ -1,21 +1,18 @@
 namespace PlantTracker_App;
-[QueryProperty(nameof(Plant), "Plant")]
+
 public partial class EditPlantPage : ContentPage
 {
-    Plant plant;
-    public Plant Plant
-    {
-        get => plant;
-        set
-        {
-            plant = value;
-            OnPropertyChanged();
-        }
-    }
-    
-    public EditPlantPage()
+    private EditPlantPageViewModel EVM;
+       
+    public EditPlantPage(EditPlantPageViewModel EVM)
 	{
 		InitializeComponent();
-        BindingContext = this;
+        this.EVM = EVM;
+        BindingContext = EVM;
+    }
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        EVM.InitDraft();
     }
 }

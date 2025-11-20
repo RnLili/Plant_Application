@@ -33,24 +33,10 @@ namespace PlantTracker_App
             var petList = await database.GetPlantsAsync();
             Plants.Clear();
             petList.ForEach(p => Plants.Add(p));
+            Plants.Add(new Plant { Name = "Orchidea", Description = "Párás környezet", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilizer = FertilizerType.Orchid });
         }
 
-        [RelayCommand]
-        public async Task PlantDetails()
-        {
-            if (SelectedPlant != null)
-            {
-                var p = new ShellNavigationQueryParameters
-                {
-                    {"Plant", SelectedPlant }
-                };
-                await Shell.Current.GoToAsync("plantdetails", p);
-            }
-            else
-            {
-                WeakReferenceMessenger.Default.Send("Please select a plant.");
-            }
-        }
+        
         [RelayCommand]
         public async Task NewPlant()
         {
@@ -84,7 +70,7 @@ namespace PlantTracker_App
             {
                 var param = new ShellNavigationQueryParameters
             {
-                { "Pet", SelectedPlant }
+                { "Plant", SelectedPlant }
             };
                 await Shell.Current.GoToAsync("editplant", param);
             }

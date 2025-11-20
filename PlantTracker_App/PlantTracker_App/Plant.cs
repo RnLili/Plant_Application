@@ -44,6 +44,8 @@ namespace PlantTracker_App
         FertilizerType fertilizer;
         //[ObservableProperty]
         //Image img;
+        [ObservableProperty]
+        bool isExpanded;
 
         public Plant GetCopy()
         {

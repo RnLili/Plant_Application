@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace PlantTracker_App
 {
@@ -9,11 +10,13 @@ namespace PlantTracker_App
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<CompassPageViewModel>();
@@ -23,6 +26,7 @@ namespace PlantTracker_App
             builder.Services.AddTransient<EditPlantPageViewModel>();
             builder.Services.AddTransient<EditPlantPage>();
             builder.Services.AddSingleton<IPlantDatabase, SQLitePlantDatabase>();
+            builder.Services.AddSingleton<IEventDatabase, SQLiteEventDatabase>();
 
 #if DEBUG
             builder.Logging.AddDebug();

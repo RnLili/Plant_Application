@@ -4,10 +4,12 @@ namespace PlantTracker_App;
 
 public partial class CalendarPage : ContentPage
 {
-    public CalendarPage(CalendarPageViewModel calendar_viewModel)
+    public CalendarPageViewModel c_viewModel { get; set; }
+    public CalendarPage(CalendarPageViewModel c_viewModel)
     {
         InitializeComponent();
-        BindingContext = calendar_viewModel;
+        this.c_viewModel = c_viewModel;
+        BindingContext = c_viewModel;
         WeakReferenceMessenger.Default.Register<string>(this, async (r, m) =>
         {
             await DisplayAlert("Warning", m, "OK");

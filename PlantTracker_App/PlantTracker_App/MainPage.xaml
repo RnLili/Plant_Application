@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PlantTracker_App"
              x:Class="PlantTracker_App.MainPage"
-             Loaded="MainPage_OnLoaded">
+             >
     <ScrollView>
         <Grid RowDefinitions="Auto,Auto">
             <HorizontalStackLayout Spacing="15" HorizontalOptions="Center" Margin="30">
-                <Button Text="New" Command="{Binding NewPlantCommand}" BackgroundColor="DarkOliveGreen"/>
+                <Button Text="New" Command="{Binding AddPlantCommand}" BackgroundColor="DarkOliveGreen"/>
                 <Button Text="Edit" Command="{Binding EditPlantCommand}" BackgroundColor="DarkOliveGreen"/>
                 <Button Text="Delete" Command="{Binding DeletePlantCommand}" BackgroundColor="DarkOliveGreen"/>
             </HorizontalStackLayout>
@@ -20,15 +20,15 @@
                         <DataTemplate x:DataType="local:Plant">
                             <Border Margin="5" Padding="5"
                                 Stroke="Lavender"  StrokeThickness="2" StrokeShape="RoundRectangle 10">
-                                <HorizontalStackLayout Spacing="60" HorizontalOptions="Start" Margin="3" Padding="5">
+                                <HorizontalStackLayout Spacing="50" HorizontalOptions="Start"  Margin="3">
+                                    <Image Source="{Binding Url}" WidthRequest="50" HeightRequest="50" IsVisible="Visible"/>
                                     <VerticalStackLayout>
                                         <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Name}" IsVisible="Visible"/>
                                         <Label Text="{Binding WaterNeed,StringFormat='Water Need: {0}'}" IsVisible="{Binding IsExpanded}"/>
                                         <Label Text="{Binding LightNeed,StringFormat='Sunlight: {0}'}" IsVisible="{Binding IsExpanded}"/>
                                         <Label Text="{Binding Fertilizer, StringFormat='Fertilizer: {0}'}" IsVisible="{Binding IsExpanded}"/>
                                         <Label Text="{Binding Description, StringFormat='Notes: {0}'}" IsVisible="{Binding IsExpanded}"/>
-                                    </VerticalStackLayout>
-                                    <Label Text="Details"/>
+                                    </VerticalStackLayout>                                    
                                     <Switch OnColor="Lavender" ThumbColor="MediumPurple" IsToggled="{Binding IsExpanded}" />
                                 </HorizontalStackLayout>
                                 

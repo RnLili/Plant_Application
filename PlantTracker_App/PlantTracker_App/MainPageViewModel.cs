@@ -6,14 +6,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PlantTracker_App
 {
+    [QueryProperty(nameof(NewPlant), "newplant")]
+    
     public partial class MainPageViewModel : ObservableObject
     {
-        private IPlantDatabase database;
-
+        string path = Path.Combine(FileSystem.Current.AppDataDirectory, "plants.json");
+        public Plant NewPlant
+        {
+            set { Plants.Add(value); }
+        }
         public ObservableCollection<Plant> Plants { get; set; }
 
         [ObservableProperty]
@@ -21,39 +27,41 @@ namespace PlantTracker_App
 
         [ObservableProperty]
         private Plant editedPlant;
-        public MainPageViewModel(IPlantDatabase database)
-        {
-            this.database = database;
-            Plants = new ObservableCollection<Plant>();           
-            
+        public MainPageViewModel()
+        {            
+            Plants = new ObservableCollection<Plant>();      
         }
 
-        public async Task InitAsync()
+        public async Task LoadFromJson()
         {
-            var petList = await database.GetPlantsAsync();
-            Plants.Clear();
-            petList.ForEach(p => Plants.Add(p));
-            Plants.Add(new Plant { Name = "Orchidea", Description = "Párás környezet", WaterNeed = WaterType.Medium, LightNeed = LightType.Medium, Fertilizer = FertilizerType.Orchid });
-        }
-
-        
-        [RelayCommand]
-        public async Task NewPlant()
-        {
-            SelectedPlant = null;
-            var param = new ShellNavigationQueryParameters
+            if (File.Exists(path) && Plants.Count == 0)
             {
-                { "Plant", null}  //lehet probléma lesz
-            };
-            await Shell.Current.GoToAsync("editplant", param);
+                string jsonstring = await File.ReadAllTextAsync(path);
+                List<Plant> jsonData = JsonSerializer.Deserialize<List<Plant>>(jsonstring);
+                jsonData.ForEach(item => Plants.Add(item));
+
+            }
+        }
+
+
+        public async Task SaveToJson()
+        {
+            string jsonstring = JsonSerializer.Serialize(Plants);
+            await File.WriteAllTextAsync(path, jsonstring);
+        }       
+
+
+        [RelayCommand]
+        public async Task AddPlant()
+        {
+            await Shell.Current.GoToAsync("newplant");
         }
 
         [RelayCommand]
         public async Task DeletePlant()
         {
             if(SelectedPlant != null )
-            {
-                database.DeletePlantAsync(SelectedPlant);
+            {                
                 Plants.Remove(SelectedPlant);
                 SelectedPlant = null;
             }

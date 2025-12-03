@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantTracker_App.NewPlantPage"
+             Title="NewPlantPage">
+    <ScrollView>
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <Label Text="Name"/>
+            <Entry Text="{Binding NewPlant.Name}"/>
+        <Label Text="Water Need"/>
+            <Picker Title="Watering Frequency" ItemsSource="{Binding WaterNeeds}" SelectedItem="{Binding NewPlant.WaterNeed}"/>
+        <Label Text="Sunlight"/>
+            <Picker Title="Sunlight Time" ItemsSource="{Binding LightNeeds}" SelectedItem="{Binding NewPlant.LightNeed}"/>
+
+        <Label Text="Fertilizer"/>
+            <Picker Title="Fertilizer type" ItemsSource="{Binding Fertilizer}" SelectedItem="{Binding NewPlant.Fertilizer}"/>
+        <Label Text="Notes"/>
+            <Entry Text="{Binding NewPlant.Description}"/>
+         <Label Text="Image"/>
+         <Button Text="Select an image" Command="{Binding ImageButtonCommand}" Margin="5"/>
+            <Image Source="{Binding NewPlant.Url}" WidthRequest="200"/>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Save" Command="{Binding SavePlantButtonCommand}"/>
+                <Button Text="Cancel" Command="{Binding CancelPlantButtonCommand}"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

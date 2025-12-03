@@ -5,49 +5,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlantTracker_App;
 
-
-namespace PlantTracker_App    
+namespace PlantTracker_App
 {
-    [QueryProperty(nameof(EditedPlant), "Plant")]
-    public partial class EditPlantPageViewModel : ObservableObject
+    public partial class NewPlantPageViewModel : ObservableObject
     {
-        [ObservableProperty]
-        Plant editedPlant;
-
-        [ObservableProperty]
-        Plant draft;
-
-        public Array WaterNeeds { get; } = Enum.GetValues<WaterType>(); 
+        public Array WaterNeeds { get; } = Enum.GetValues<WaterType>();
         public Array LightNeeds { get; } = Enum.GetValues<LightType>();
         public Array Fertilizer { get; } = Enum.GetValues<FertilizerType>();
 
-        public void InitDraft()
+        public Plant NewPlant { get; set; }
+
+        public NewPlantPageViewModel()
         {
-            Draft = EditedPlant.GetCopy();
-        }
-        
-        [RelayCommand]
-        public async Task SavePlant()
-        {
-            EditedPlant.Name = Draft.Name;
-            EditedPlant.WaterNeed = Draft.WaterNeed;
-            EditedPlant.LightNeed = Draft.LightNeed;
-            EditedPlant.Fertilizer = Draft.Fertilizer;
-            EditedPlant.Description = Draft.Description;
-            EditedPlant.Url = Draft.Url;
-            await Shell.Current.GoToAsync("..");
+            NewPlant = new Plant();            
         }
 
         [RelayCommand]
-        public async Task CancelEdit()
+        public async Task SavePlantButton()
+        {
+
+            var param = new ShellNavigationQueryParameters()
+        {
+            {"newplant",NewPlant}
+        };
+            await Shell.Current.GoToAsync("..", param);
+        }
+        [RelayCommand]
+        public async Task CancelPlantButton()
         {
             await Shell.Current.GoToAsync("..");
         }
-
         [RelayCommand]
-        public async Task EditImageButton()
+        public async Task ImageButton()
         {
             FileResult? photo = await MediaPicker.Default.PickPhotoAsync();
 
@@ -60,9 +50,10 @@ namespace PlantTracker_App
                     using FileStream stream = File.OpenWrite(path);
                     await source.CopyToAsync(stream);
                 }
-                Draft.Url = path;
+                NewPlant.Url = path;
             }
 
         }
+
     }
 }

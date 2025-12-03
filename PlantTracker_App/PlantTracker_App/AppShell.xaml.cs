@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute("editplant", typeof(EditPlantPage));
+            Routing.RegisterRoute("newplant", typeof(NewPlantPage));
         }
     }
 }

@@ -28,10 +28,10 @@ namespace PlantTracker_App
     }
     public partial class Plant : ObservableObject
     {
-        [ObservableProperty]
-        [property:PrimaryKey]
-        [property:AutoIncrement]
-        int id;
+        //[ObservableProperty]
+        //[property:PrimaryKey]
+        //[property:AutoIncrement]
+        //int id;
         [ObservableProperty]
         string name;
         [ObservableProperty]
@@ -42,8 +42,8 @@ namespace PlantTracker_App
         LightType lightNeed;
         [ObservableProperty]
         FertilizerType fertilizer;
-        //[ObservableProperty]
-        //Image img;
+        [ObservableProperty]
+        string url;
         [ObservableProperty]
         bool isExpanded;
 

@@ -3,22 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlantTracker_App.EditPlantPage"
              Title="Edit Plant Page">
+    <ScrollView>
     <VerticalStackLayout Spacing="10" Padding="10">
         <Label Text="Name"/>
         <Entry Text="{Binding Draft.Name}"/>
         <Label Text="Water Need"/>        
-        <Picker Title="Watering Frequency" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-                              Path=BindingContext.WaterNeeds}" SelectedItem="{Binding Draft.WaterNeed}"/>
+        <Picker Title="Watering Frequency" ItemsSource="{Binding WaterNeeds}" SelectedItem="{Binding Draft.WaterNeed}"/>
         <Label Text="Sunlight"/>
-        <Picker Title="Sunlight Time" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-                      Path=BindingContext.LightNeeds}" SelectedItem="{Binding Draft.LightNeed}"/>
+        <Picker Title="Sunlight Time" ItemsSource="{Binding LightNeeds}" SelectedItem="{Binding Draft.LightNeed}"/>
         
         <Label Text="Fertilizer"/>
-        <Picker Title="Fertilizer type" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-              Path=BindingContext.Fertilizer}" SelectedItem="{Binding Draft.Fertilizer}"/>
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+        <Picker Title="Fertilizer type" ItemsSource="{Binding Fertilizer}" SelectedItem="{Binding Draft.Fertilizer}"/>
+        <Label Text="Notes"/>
+        <Entry Text="{Binding Draft.Description}"/>
+        <Label Text="Image"/>
+        <Button Text="Select image" Command="{Binding EditImageButtonCommand}" Margin="5"/>
+        <Image Source="{Binding Draft.Url}" WidthRequest="200"/>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">            
             <Button Text="Save" Command="{Binding SavePlantCommand}"/>
             <Button Text="Cancel" Command="{Binding CancelEditCommand}"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

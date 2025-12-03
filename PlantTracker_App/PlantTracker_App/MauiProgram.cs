@@ -24,9 +24,10 @@ namespace PlantTracker_App
             builder.Services.AddSingleton<CalendarPageViewModel>();
             builder.Services.AddSingleton<CalendarPage>();
             builder.Services.AddTransient<EditPlantPageViewModel>();
-            builder.Services.AddTransient<EditPlantPage>();
-            builder.Services.AddSingleton<IPlantDatabase, SQLitePlantDatabase>();
+            builder.Services.AddTransient<EditPlantPage>();            
             builder.Services.AddSingleton<IEventDatabase, SQLiteEventDatabase>();
+            builder.Services.AddTransient<NewPlantPageViewModel>();
+            builder.Services.AddTransient<NewPlantPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

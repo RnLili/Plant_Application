@@ -15,4 +15,6 @@ public partial class EditPlantPage : ContentPage
         base.OnNavigatedTo(args);
         EVM.InitDraft();
     }
+
+   
 }

@@ -15,10 +15,7 @@ namespace PlantTracker_App
                 await DisplayAlert("Warning", m, "OK");
             });
         }
-        //private async void MainPage_OnLoaded(object? sender, EventArgs e)
-        //{
-        //    await viewModel.InitAsync();
-        //}
+        
 
         protected override async void OnDisappearing()
         {

@@ -55,8 +55,7 @@ namespace PlantTracker_App
         [RelayCommand]
         public async Task DeleteEvent(CalendarEvent evt)
         {
-            bool confirm = await PageExtensions.CurrentPage.DisplayAlert(
-        "Delete Event", $"Delete '{evt.Title}'?", "Yes", "No");
+            bool confirm = await PageExtensions.CurrentPage.DisplayAlert("Delete Event", $"Delete '{evt.Title}'?", "Yes", "No");
 
             if (!confirm) return;
 

@@ -37,11 +37,12 @@ namespace PlantTracker_App
         [RelayCommand]
         public async Task AddEvent()
         {
-            string title = await PageExtensions.CurrentPage.DisplayPromptAsync(
-        "New Event", "Event title:");
+            string title = await PageExtensions.CurrentPage.DisplayPromptAsync("New Event", "Event title:");
 
             if (string.IsNullOrWhiteSpace(title))
+            {
                 return;
+            }               
 
             var newEvent = new CalendarEvent
             {
@@ -57,7 +58,10 @@ namespace PlantTracker_App
         {
             bool confirm = await PageExtensions.CurrentPage.DisplayAlert("Delete Event", $"Delete '{evt.Title}'?", "Yes", "No");
 
-            if (!confirm) return;
+            if (!confirm)
+            {
+                return;
+            }
 
             await db.DeleteEventAsync(evt);
             LoadEventsForDate();
@@ -71,9 +75,7 @@ namespace PlantTracker_App
     }
     public static class PageExtensions
     {
-        public static Page CurrentPage =>
-            App.Current?.Windows.FirstOrDefault()?.Page
-            ?? throw new Exception("No active window found.");
+        public static Page CurrentPage => App.Current?.Windows.FirstOrDefault()?.Page?? throw new Exception("No active window found.");
     }
 
 }

@@ -28,17 +28,24 @@ namespace PlantTracker_App
         void Start()
         {
             if (!Compass.IsSupported)
+            {
                 return;
+            }              
 
             if (!Compass.IsMonitoring)
+            {
                 Compass.Start(SensorSpeed.UI);
+            }
+                
         }
 
         [RelayCommand]
         void Stop()
         {
             if (Compass.IsMonitoring)
+            {
                 Compass.Stop();
+            }               
         }
     }
 }

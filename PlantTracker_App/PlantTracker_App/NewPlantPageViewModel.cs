@@ -26,9 +26,9 @@ namespace PlantTracker_App
         {
 
             var param = new ShellNavigationQueryParameters()
-        {
-            {"newplant",NewPlant}
-        };
+            {
+                {"newplant",NewPlant}
+            };
             await Shell.Current.GoToAsync("..", param);
         }
         [RelayCommand]

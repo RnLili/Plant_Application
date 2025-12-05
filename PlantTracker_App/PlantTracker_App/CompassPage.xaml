@@ -6,24 +6,16 @@
     <VerticalStackLayout Spacing="20" Padding="20">
 
       
-        <Image x:Name="CompassImage"
-               Source="minecraft_compass.png"
-               HeightRequest="250"
-               WidthRequest="250"
-               HorizontalOptions="Center">
+        <Image x:Name="CompassImage" Source="compass.png" HeightRequest="250" WidthRequest="250" HorizontalOptions="Center">
             <Image.Rotation>
                 <Binding Path="Heading" />
             </Image.Rotation>
         </Image>
 
-        <Label Text="{Binding Heading, StringFormat='Heading: {0:F0}°'}"
-               FontSize="24"
-               HorizontalOptions="Center"/>
+        <Label Text="{Binding Heading, StringFormat='Heading: {0:F0}°'}" FontSize="24" HorizontalOptions="Center"/>
 
-        <Button Text="Start Compass"
-                Command="{Binding StartCommand}"/>
+        <Button Text="Start Compass" Command="{Binding StartCommand}"/>
 
-        <Button Text="Stop Compass"
-                Command="{Binding StopCommand}"/>
+        <Button Text="Stop Compass" Command="{Binding StopCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

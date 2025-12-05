@@ -28,10 +28,7 @@ namespace PlantTracker_App
     }
     public partial class Plant : ObservableObject
     {
-        //[ObservableProperty]
-        //[property:PrimaryKey]
-        //[property:AutoIncrement]
-        //int id;
+        
         [ObservableProperty]
         string name;
         [ObservableProperty]
